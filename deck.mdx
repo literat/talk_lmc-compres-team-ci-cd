@@ -8,8 +8,7 @@ export const theme = customTheme;
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:creator" content="@tomaslitera" />
   <meta
-    property="og:image"
-    content="http://renovate-your-dependencies.netlify.com/presentation.png"
+    property="https://lmc-compres-team-ci-cd.netlify.app/presentation.png"
   />
   <meta
     property="og:title"
@@ -27,6 +26,176 @@ _by Tomáš Litera_
 
 ---
 
+# Why CI/CD
+
+* fast
+* frequent
+* reliable
+* automated
+* consistent
+
+---
+
+# The Flow
+
+* pipelines
+
+TODO: image of git flow
+
+---
+
+## Continous Integration
+
+TODO: image of testing part of a pipeline
+
+* lint
+* unit tests
+* check types
+* check code format
+* code quality check (sonar qube)
+TODO: link to confluence for sonar qube
+https://confluence.int.lmc.cz/display/TECH/Running+Sonar+Qube+Scan+on+Jenkins
+
+---
+
+### Semi-Automated Release
+
+TODO: releasing with narwhal
+
+* manual work
+---
+
+## Continuous Delivery
+
+TODO: image of shipping part of pipeline
+
+* build
+* ship
+* deploy
+
+---
+
+### Automated Release
+
+TODO: kukad, fp-admin, to the deploy and production
+
+---
+
+## Continuous Deployment
+
+Continous Integration + Contunous Delivery = Continous Deployment Pipeline
+
+TODO: image of a full pipeline
+
+---
+
+# Tools and Examples
+
+---
+
+## Integration branch
+
+https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/bin/integrate.sh
+
+https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/Jenkinsfile_integration
+
+https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/bin/run-integration.sh
+
+---
+
+## Versioning
+
+https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/Jenkinsfile#222
+
+https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/bin/conventional-semver.sh
+
+---
+
+## Skip builds
+
+https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/Jenkinsfile#64
+
+https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/Jenkinsfile#218
+
+---
+
+## Deploy to PRODUCTION
+
+---
+
+### Release Actor
+
+How to get merge actor from Bitbucket to Narwhal
+
+Tomas Litera <tomas.litera@lmc.eu>
+
+TODO: image of release actor in Narwhal
+
+---
+
+Where to store it in Narwhal
+From Jenkins to Narwhal
+
+Narwhal task description
+
+https://bitbucket.lmc.cz/projects/COM/repos/compres-jenkins2-shared-libraries/browse/vars/createNarwhalTask.groovy#21
+
+https://bitbucket.lmc.cz/projects/IIS/repos/kukad/browse/Jenkinsfile#267
+
+---
+
+From bitbucket to Jenkins
+
+How to get the actor from BB to Jenkins
+
+HOOKS
+
+---
+
+* ❌ Parametrised Builds For Jenkins
+* ❌ Webhook to Jenkins for bitbucket server (it can, but did not work)
+* ❌ bitbucket_hook
+* ❌ bitbucket-scmsource-hook
+* ✅ multibranch-webhook-trigger
+* ✅ generic-webhook-trigger
+
+---
+
+multibranch-webhook-trigger: triggers jenkins autoscan
+
+generic-wehbook-trigger: pass the parameters
+
+https://bitbucket.lmc.cz/plugins/servlet/webhooks/projects/IIS/repos/kukad
+https://bitbucket.lmc.cz/projects/IIS/repos/kukad/browse/Jenkinsfile#14
+
+---
+
+# Missing Concepts
+
+---
+
+## Architecture/Infrastructure as a Code
+
+* file based configuration
+
+* Narwhal
+* Nomad
+
+---
+
+## QA
+
+* multiple Jenkins instances and how to manage pipeline between them
+* environment reset (devel6 mainly)
+
+---
+
+## Unified Release Flow
+
+* versioning
+* release notes/changelog
+* git flow
+* release manager (automat/robot)
 ---
 
 👋

@@ -19,7 +19,7 @@ const Provider = ({ children }) => {
           color: "#003e7e"
         }}
       >
-        <span>2020-02-18 LMC Architecture Board</span>
+        <span>2020-05-27 LMC Month of Operations II</span>
           tomas.litera@lmc.eu
       </div>
 
