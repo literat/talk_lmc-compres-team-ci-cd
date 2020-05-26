@@ -1,9 +1,20 @@
 import { Notes, Head, Appear } from "mdx-deck";
-import lmcLogo from './images/lmc-logo.png'
-import gitFlow from './images/git-flow.png'
-import integrationPipeline from './images/integration-pipeline.png'
-import deliveryPipeline from './images/delivery-pipeline.png'
-import deploymentPipeline from './images/deployment-pipeline.png'
+import lmcLogo from './images/lmc-logo.png';
+import gitFlow from './images/git-flow.png';
+import integrationPipeline from './images/integration-pipeline.png';
+import deliveryPipeline from './images/delivery-pipeline.png';
+import deploymentPipeline from './images/deployment-pipeline.png';
+import bitbucketHooks from './images/bitbucket-hooks.png';
+import changelog from './images/changelog.png';
+import ciSkip from './images/ci-skip.png';
+import jenkinsGenericTrigger from './images/jenkins-generic-trigger.png';
+import jenkinsTaskActor from './images/jenkins-task-actor.png';
+import manualRelease from './images/manual-release.png';
+import narwhalRelease from './images/narwhal-release.png';
+import taskActor from './images/task-actor.png';
+import repositoryTags from './images/repository-tags.png';
+import integrationBranch from './images/integration-branch.png';
+import versionTable from './images/version-table.png';
 import { default as customTheme } from "./src/theme";
 export const theme = customTheme;
 
@@ -70,13 +81,17 @@ _by Tomáš Litera_
 
 ### Semi-Automated Release
 
-* manual work
-* How should I deploy your App in your team?
+* manual work 🚧 🛠 🚧 🔩 🚧
 
-You must click in Narwhal!
+<img src={narwhalRelease} />
 
-TODO: images?
-TODO: jobs.cz seznam kroků
+---
+
+How should I deploy your App in your team?
+
+<img src={manualRelease} width="900" />
+
+* [Quick Release Process](https://confluence.int.lmc.cz/display/TJOBS/Quick+release+proces)
 
 ---
 
@@ -121,32 +136,52 @@ Continuous Integration + Continuous Delivery = Continuous Deployment
 
 ## Integration branch
 
-https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/bin/integrate.sh
+---
 
-https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/Jenkinsfile_integration
+<img src={integrationBranch} width="700" />
 
-https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/bin/run-integration.sh
+---
+
+Docs:
+
+* [Integration Script](https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/bin/integrate.sh)
+* [Integration Jenkinsfile](https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/Jenkinsfile_integration)
+* [Run Integration Script](https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/bin/run-integration.sh)
 
 ---
 
 ## Versioning
 
-https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/Jenkinsfile#222
+---
 
-https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/bin/conventional-semver.sh
+<img src={repositoryTags} />
 
-TODO: image with version tags
-TODO: Image from our table with what is where
+---
+
+<img src={versionTable} />
+
+---
+
+Docs:
+
+* [Jenkinsfile with Versioning](https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/Jenkinsfile#222)
+* [SemVer Script](https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/bin/conventional-semver.sh)
+* [Service List](https://bitbucket.lmc.cz/projects/FP/repos/services-list/browse)
 
 ---
 
 ## Skip builds
 
-https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/Jenkinsfile#64
+---
 
-https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/Jenkinsfile#218
+<img src={ciSkip} />
 
-TODO: image with build skip
+---
+
+Docs:
+
+* [CI Skip in Jenkinsfile](https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/Jenkinsfile#64)
+* [Bump message](https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/Jenkinsfile#218)
 
 ---
 
@@ -162,29 +197,38 @@ WHO done this?
 
 ### Release Actor
 
-How to get merge actor from Bitbucket to Narwhal
+----
+
+<img src={taskActor} />
+
+---
+
+How to get merge actor from Bitbucket to Narwhal?
 
 ```text
 Tomas Litera <tomas.litera@lmc.eu>
 ```
 
-TODO: image of release actor in Narwhal
-
 ---
 
 ### Jenkins → Narwhal
 
-Where to store it in Narwhal?
+How to store it in Narwhal?
 
 ```text
 description
 ```
 
-TODO: image
+---
 
-https://bitbucket.lmc.cz/projects/COM/repos/compres-jenkins2-shared-libraries/browse/vars/createNarwhalTask.groovy#21
+<img src={jenkinsTaskActor} width="700" />
 
-https://bitbucket.lmc.cz/projects/IIS/repos/kukad/browse/Jenkinsfile#267
+----
+
+Docs:
+
+* [Jenkins Shared Libraries](https://bitbucket.lmc.cz/projects/COM/repos/compres-jenkins2-shared-libraries/browse/vars/createNarwhalTask.groovy#21)
+* [Jenkinsfile](https://bitbucket.lmc.cz/projects/IIS/repos/kukad/browse/Jenkinsfile#267)
 
 ---
 
@@ -192,34 +236,42 @@ https://bitbucket.lmc.cz/projects/IIS/repos/kukad/browse/Jenkinsfile#267
 
 How to get the actor from Bitbucket to Jenkins?
 
-WEBHOOKS!!!
+---
+
+📡  WEBHOOKS  🛰
 
 ---
 
 <ul>
   <Appear>
-    <li>❌ Parametrised Builds For Jenkins</li>
-    <li>❌ Webhook to Jenkins for bitbucket server (it can, but did not work)</li>
-    <li>❌ bitbucket_hook</li>
-    <li>❌ bitbucket-scmsource-hook</li>
-    <li>✅ multibranch-webhook-trigger</li>
-    <li>✅ generic-webhook-trigger</li>
+    <li>❌ <a href="https://marketplace.atlassian.com/apps/1213179/parameterized-builds-for-jenkins?hosting=server&tab=overview" target="_blank">Parametrised Builds For Jenkins</a></li>
+    <li>❌ <a href="https://marketplace.atlassian.com/apps/1211284/webhook-to-jenkins-for-bitbucket?hosting=server&tab=overview" target="_blank">Webhook to Jenkins for bitbucket server</a> (it can, but did not work)</li>
+    <li>❌ <a href="https://plugins.jenkins.io/bitbucket/" target="_blank">Jenkins Bitbucket plugin</a></li>
+    <li>❌ <a href="https://plugins.jenkins.io/cloudbees-bitbucket-branch-source/" target="_blank">Bitbucket Branch Source</a></li>
+    <li>✅ <a href="https://plugins.jenkins.io/multibranch-scan-webhook-trigger/" target="_blank">Multibranch Scan Webhook Trigger</a></li>
+    <li>✅ <a href="https://plugins.jenkins.io/generic-webhook-trigger/" target="_blank">Generic Webhook Trigger</a></li>
   </Appear>
 </ul>
 
-TODO: add links
+---
+
+* multibranch-webhook-trigger → triggers jenkins autoscan
+
+* generic-wehbook-trigger → pass the parameters
+
+<img src={bitbucketHooks} />
 
 ---
 
-multibranch-webhook-trigger: triggers jenkins autoscan
+<img src={jenkinsGenericTrigger} width="900" />
 
-generic-wehbook-trigger: pass the parameters
+---
 
-https://bitbucket.lmc.cz/plugins/servlet/webhooks/projects/IIS/repos/kukad
-https://bitbucket.lmc.cz/projects/IIS/repos/kukad/browse/Jenkinsfile#14
+Docs:
 
+* [Bitbucket Repository Settings](https://bitbucket.lmc.cz/plugins/servlet/webhooks/projects/IIS/repos/kukad)
+* [Jenkinsfile](https://bitbucket.lmc.cz/projects/IIS/repos/kukad/browse/Jenkinsfile#14)
 
-TODO: images
 
 ---
 
