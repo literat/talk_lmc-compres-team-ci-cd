@@ -1,0 +1,327 @@
+import { Notes, Head, Appear } from "mdx-deck";
+import lmcLogo from './images/lmc-logo.png';
+import gitFlow from './images/git-flow.png';
+import integrationPipeline from './images/integration-pipeline.png';
+import deliveryPipeline from './images/delivery-pipeline.png';
+import deploymentPipeline from './images/deployment-pipeline.png';
+import bitbucketHooks from './images/bitbucket-hooks.png';
+import changelog from './images/changelog.png';
+import ciSkip from './images/ci-skip.png';
+import jenkinsGenericTrigger from './images/jenkins-generic-trigger.png';
+import jenkinsTaskActor from './images/jenkins-task-actor.png';
+import manualRelease from './images/manual-release.png';
+import narwhalRelease from './images/narwhal-release.png';
+import taskActor from './images/task-actor.png';
+import repositoryTags from './images/repository-tags.png';
+import integrationBranch from './images/integration-branch.png';
+import versionTable from './images/version-table.png';
+import { default as customTheme } from "./src/theme";
+export const theme = customTheme;
+
+<Head>
+  <title>Compres Team CI/CD – Tomas Litera</title>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:creator" content="@tomaslitera" />
+  <meta
+    property="https://lmc-compres-team-ci-cd.netlify.app/presentation.png"
+  />
+  <meta
+    property="og:title"
+    content="Compres Team CI/CD – Tomas Litera"
+  />
+</Head>
+
+<img src={lmcLogo} width="120" />
+
+# Compres Team CI/CD
+
+_by Tomáš Litera_
+
+<Notes>Microphone, screen recording, start timer</Notes>
+
+---
+
+# Why CI/CD
+
+<ul>
+  <Appear>
+    <li>fast</li>
+    <li>frequent</li>
+    <li>reliable</li>
+    <li>automated</li>
+    <li>consistent</li>
+  </Appear>
+</ul>
+
+---
+
+# The Flow
+
+<img src={gitFlow} width="500" />
+
+---
+
+## Continuous Integration
+
+<img src={integrationPipeline} />
+
+---
+
+<ul>
+  <Appear>
+    <li>lint</li>
+    <li>unit tests</li>
+    <li>check types</li>
+    <li>check code format</li>
+    <li>code quality check (SonarQube <a href="https://confluence.int.lmc.cz/display/TECH/Running+Sonar+Qube+Scan+on+Jenkins" target="_blank">→ How To)</a></li>
+  </Appear>
+</ul>
+
+---
+
+### Semi-Automated Release
+
+* manual work 🚧 🛠 🚧 🔩 🚧
+
+<img src={narwhalRelease} />
+
+---
+
+How should I deploy your App in your team?
+
+<img src={manualRelease} width="900" />
+
+* [Quick Release Process](https://confluence.int.lmc.cz/display/TJOBS/Quick+release+proces)
+
+---
+
+## Continuous Delivery
+
+<img src={deliveryPipeline} />
+
+---
+
+<ul>
+  <Appear>
+    <li>build 🏗️</li>
+    <li>ship 🚢</li>
+    <li>deploy 🚀</li>
+  </Appear>
+</ul>
+
+---
+
+### Automated Release
+
+<ul>
+  <Appear>
+    <li>kukad: local → dev2-ict → prod-ict</li>
+    <li>fp-admin: local → dev32 → devel6, dev25, dev36, deploy → prod (manual 🤷‍♂️)</li>
+  </Appear>
+</ul>
+
+---
+
+## Continuous Deployment
+
+Continuous Integration + Continuous Delivery = Continuous Deployment
+
+<img src={deploymentPipeline} />
+
+---
+
+# Tools and Examples
+
+---
+
+## Integration branch
+
+---
+
+<img src={integrationBranch} width="700" />
+
+---
+
+Docs:
+
+* [Integration Script](https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/bin/integrate.sh)
+* [Integration Jenkinsfile](https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/Jenkinsfile_integration)
+* [Run Integration Script](https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/bin/run-integration.sh)
+
+---
+
+## Versioning
+
+---
+
+<img src={repositoryTags} />
+
+---
+
+<img src={versionTable} />
+
+---
+
+Docs:
+
+* [Jenkinsfile with Versioning](https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/Jenkinsfile#222)
+* [SemVer Script](https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/bin/conventional-semver.sh)
+* [Service List](https://bitbucket.lmc.cz/projects/FP/repos/services-list/browse)
+
+---
+
+## Skip builds
+
+---
+
+<img src={ciSkip} />
+
+---
+
+Docs:
+
+* [CI Skip in Jenkinsfile](https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/Jenkinsfile#64)
+* [Bump message](https://bitbucket.lmc.cz/projects/FP/repos/fp-admin/browse/Jenkinsfile#218)
+
+---
+
+## Shipping to PRODUCTION
+
+---
+
+### Problem
+
+WHO done this?
+
+---
+
+### Release Actor
+
+----
+
+<img src={taskActor} />
+
+---
+
+How to get merge actor from Bitbucket to Narwhal?
+
+```text
+Tomas Litera <tomas.litera@lmc.eu>
+```
+
+---
+
+### Jenkins → Narwhal
+
+How to store it in Narwhal?
+
+```text
+description
+```
+
+---
+
+<img src={jenkinsTaskActor} width="700" />
+
+----
+
+Docs:
+
+* [Jenkins Shared Libraries](https://bitbucket.lmc.cz/projects/COM/repos/compres-jenkins2-shared-libraries/browse/vars/createNarwhalTask.groovy#21)
+* [Jenkinsfile](https://bitbucket.lmc.cz/projects/IIS/repos/kukad/browse/Jenkinsfile#267)
+
+---
+
+### Bitbucket → Jenkins
+
+How to get the actor from Bitbucket to Jenkins?
+
+---
+
+📡  WEBHOOKS  🛰
+
+---
+
+<ul>
+  <Appear>
+    <li>❌ <a href="https://marketplace.atlassian.com/apps/1213179/parameterized-builds-for-jenkins?hosting=server&tab=overview" target="_blank">Parametrised Builds For Jenkins</a></li>
+    <li>❌ <a href="https://marketplace.atlassian.com/apps/1211284/webhook-to-jenkins-for-bitbucket?hosting=server&tab=overview" target="_blank">Webhook to Jenkins for bitbucket server</a> (it can, but did not work)</li>
+    <li>❌ <a href="https://plugins.jenkins.io/bitbucket/" target="_blank">Jenkins Bitbucket plugin</a></li>
+    <li>❌ <a href="https://plugins.jenkins.io/cloudbees-bitbucket-branch-source/" target="_blank">Bitbucket Branch Source</a></li>
+    <li>✅ <a href="https://plugins.jenkins.io/multibranch-scan-webhook-trigger/" target="_blank">Multibranch Scan Webhook Trigger</a></li>
+    <li>✅ <a href="https://plugins.jenkins.io/generic-webhook-trigger/" target="_blank">Generic Webhook Trigger</a></li>
+  </Appear>
+</ul>
+
+---
+
+* multibranch-webhook-trigger → triggers jenkins autoscan
+
+* generic-wehbook-trigger → pass the parameters
+
+<img src={bitbucketHooks} />
+
+---
+
+<img src={jenkinsGenericTrigger} width="900" />
+
+---
+
+Docs:
+
+* [Bitbucket Repository Settings](https://bitbucket.lmc.cz/plugins/servlet/webhooks/projects/IIS/repos/kukad)
+* [Jenkinsfile](https://bitbucket.lmc.cz/projects/IIS/repos/kukad/browse/Jenkinsfile#14)
+
+
+---
+
+# Missing Concepts
+
+---
+
+## Deployment as a Code
+
+<ul>
+  <Appear>
+    <li>file based configuration → git repo, the single source of true</li>
+    <li>Narwhal/Nomad templates</li>
+    <li>one location (multiple OPS apps)</li>
+    <li>https://12factor.net/</li>
+  </Appear>
+</ul>
+
+---
+
+Inspiration: Cirlce CI, Travis CI, etc...
+
+---
+
+## QA
+
+<ul>
+  <Appear>
+    <li>How to manage pipeline between multiple Jenkins instances (integration/QA)?</li>
+    <li>How to do environment resets (QA on devel6)?</li>
+  </Appear>
+</ul>
+
+---
+
+## Unified Release Flow
+
+<ul>
+  <Appear>
+    <li>app versioning (git tags/semver)</li>
+    <li>release notes/changelog</li>
+    <li>git flow, etc...</li>
+    <li>release manager (automat/bot)</li>
+  </Appear>
+</ul>
+
+---
+
+# Questions?
+
+---
+
+👋
